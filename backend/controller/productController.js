@@ -53,6 +53,7 @@ exports.getSingleProduct = catchAsyncErrors(async (req, res, next) => {
 })
 
 // update products => /api/v1/admin/product/:id
+// to update some properties of a product (name, description etc.)
 exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
     
     let product = await Product.findById(req.params.id);

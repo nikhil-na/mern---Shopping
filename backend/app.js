@@ -1,10 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser');
 const app = express();
 
 const errorMiddleware = require('./middleware/errors');
 
 app.use(express.json());
+app.use(cookieParser());
+
 const dotenv = require('dotenv');
 const { dot } = require('node:test/reporters');
 // setting up config file
@@ -13,7 +16,7 @@ dotenv.config({ path: 'backend/config/config.env' });
 
 //import routes
 const products = require('./routes/productRoute');
-const auth = require('./routes/userRoute');
+const userRoute = require('./routes/userRoute');
 
 
 //db connection
@@ -23,7 +26,7 @@ mongoose.connect(process.env.DBURI)
 
 
 app.use('/api/v1', products);
-app.use('/api/v1', auth);
+app.use('/api/v1', userRoute);
 app.use(errorMiddleware);
 
 

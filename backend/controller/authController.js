@@ -48,3 +48,15 @@ exports.loginUser = catchAsyncErrors(async(req, res, next) => {
     sendToken(user, 200, res)
 
 })
+
+// Logout users  => /api/v1/logout
+exports.logOutUser = catchAsyncErrors(async (req, res, next) => {
+    res.cookie('jwt', '', {
+        maxAge: 1,
+        httpOnly: true
+    })
+    res.status(200).json({
+        success: true,
+        message: 'Logged out!'
+    })
+})

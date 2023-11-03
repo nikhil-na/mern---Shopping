@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 
 // Checks if user is authenticated or not
 exports.isAuthenticatedUser = catchAsyncErrors( async (req, res, next) => {
-    const { token } = req.cookies;
+    const { jwt: token } = req.cookies;
 
     if(!token) {
         return next(new ErrorHandler('Login first to access this recource', 401))
@@ -18,3 +18,13 @@ exports.isAuthenticatedUser = catchAsyncErrors( async (req, res, next) => {
 
     next();
 }) 
+
+// Handling users roles
+exports.authorizeRoles = (...roles) => { // ...roles ensures any other roles (admin or editor or)
+    return (req, res, next) => {
+        if(!roles.includes(req.user.role)){
+            return next(new ErrorHandler(`Role (${req.user.role}) not authorized!`, 403));
+        }
+        next();
+    }
+}

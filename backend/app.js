@@ -13,7 +13,7 @@ dotenv.config({ path: 'backend/config/config.env' });
 
 //import routes
 const products = require('./routes/productRoute');
-
+const auth = require('./routes/userRoute');
 
 
 //db connection
@@ -23,7 +23,9 @@ mongoose.connect(process.env.DBURI)
 
 
 app.use('/api/v1', products);
+app.use('/api/v1', auth);
 app.use(errorMiddleware);
+
 
 const server = app.listen(process.env.PORT, () => {
     console.log(`Server started at ${process.env.PORT}!`);

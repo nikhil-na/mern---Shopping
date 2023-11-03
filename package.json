@@ -2,20 +2,26 @@
   "name": "mern",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "backend/app.js",
   "scripts": {
-    "start": "node backend/app.js",
+    "start": "SET node backend/app.js",
     "dev": "SET NODE_ENV=DEVELOPMENT& nodemon backend/app",
     "prod": "SET NODE_ENV=PRODUCTION& nodemon backend/app",
     "seeder": "node backend/utils/seeder.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Nikhil Aryal",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
-    "mongoose": "^8.0.0"
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.0.0",
+    "nodemailer": "^6.9.7",
+    "validator": "^13.11.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"

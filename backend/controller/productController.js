@@ -7,6 +7,9 @@ const APIFeatures = require('../utils/apiFeatures');
 //NOTE: only admin can access this route
 // create new product that will go to => /api/v1/product/new
 exports.newProduct = catchAsyncErrors(async (req, res, next) => {
+    
+    // ADDING USER WHO CREATED THE PRODUCT. ADDED ONE FIELD IN PRODUCT MODEL
+    req.body.user = req.user.id; 
 
     const product = await Product.create(req.body);
 

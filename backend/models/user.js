@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, "Enter a password"],
         minlength: [6, 'Password must be longer than 6 characters'],
-        select: false
+        select: false //Helps in not showing the password when making get request to "/api/v1/me"
     },
     // avatar: {
     //     pubic_id: {

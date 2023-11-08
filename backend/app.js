@@ -17,6 +17,7 @@ dotenv.config({ path: 'backend/config/config.env' });
 //import routes
 const products = require('./routes/productRoute');
 const userRoute = require('./routes/userRoute');
+const orderRoute = require('./routes/orderRoute');
 
 
 //db connection
@@ -27,6 +28,7 @@ mongoose.connect(process.env.DBURI)
 
 app.use('/api/v1', products);
 app.use('/api/v1', userRoute);
+app.use('/api/v1', orderRoute)
 app.use(errorMiddleware);
 
 

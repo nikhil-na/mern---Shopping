@@ -22,8 +22,8 @@ exports.newProduct = catchAsyncErrors(async (req, res, next) => {
 //get all products => a/pi/v1/products?keyword=apple
 exports.getProducts = catchAsyncErrors(async (req, res, next) => {
 
-    const resPerPage = 4;
-    const productCount = await Product.countDocuments();
+    const resPerPage = 8;
+    const productsCount = await Product.countDocuments();
 
     //Passing (query, queryString). Keyword is retrieved in the search function inside apiFeatures
     const apiFeatures = new APIFeatures(Product.find(), req.query)
@@ -36,7 +36,7 @@ exports.getProducts = catchAsyncErrors(async (req, res, next) => {
         success: true,
         count: products.length,
         products,
-        productCount
+        productsCount
     })
 })
 

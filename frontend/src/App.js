@@ -4,6 +4,7 @@ import Footer from './components/layot/Footer';
 import Header from './components/layot/Header';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import ProductDetails from './components/product/ProductDetails';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
             <div className='container container-fluid'>
               <Routes>
                 <Route path = '/' element = {<Home />} exact/>
+                <Route path = '/product/:id' element = {<ProductDetails />} exact/>
               </Routes>
               </div>
           </div>

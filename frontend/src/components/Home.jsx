@@ -1,5 +1,6 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import MetaData from "./layot/MetaData";
+import Pagination from "react-js-pagination";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
@@ -11,7 +12,9 @@ function Home() {
   const alert = useAlert();
   const dispatch = useDispatch();
 
-  const { loading, products, error, productsCount } = useSelector(
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const { loading, products, error, productsCount, resPerPage } = useSelector(
     (state) => state.products
   );
 
@@ -19,8 +22,12 @@ function Home() {
     if (error) {
       return alert.error(error);
     }
-    dispatch(getProducts());
-  }, [dispatch, alert, error]);
+    dispatch(getProducts(currentPage));
+  }, [dispatch, alert, error, currentPage]);
+
+  function setcurrentPageNo(pageNumber) {
+    setCurrentPage(pageNumber);
+  }
   return (
     <Fragment>
       {loading ? (
@@ -38,6 +45,22 @@ function Home() {
                 ))}
             </div>
           </section>
+          {resPerPage <= productsCount && (
+            <div className="d-flex justify-content-center mt-5">
+              <Pagination
+                activePage={currentPage}
+                itemsCountPerPage={resPerPage}
+                totalItemsCount={productsCount}
+                onChange={setcurrentPageNo}
+                nextPageText={"Next"}
+                previousPageText={"Prev"}
+                firstPageText={"First"}
+                lastPageText={"Last"}
+                itemClass="page-item" //bootstrap class
+                linkClass="page-link"
+              />
+            </div>
+          )}
         </Fragment>
       )}
     </Fragment>

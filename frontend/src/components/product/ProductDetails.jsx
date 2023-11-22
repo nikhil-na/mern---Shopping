@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
 import { useParams } from "react-router-dom";
 import { Carousel } from "react-bootstrap";
+import MetaDeta from "../layot/MetaData";
 
 import { clearErrors, getProductDetails } from "../../actions/productActions";
 
@@ -30,6 +31,7 @@ function ProductDetails() {
         <Loader />
       ) : (
         <Fragment>
+          <MetaDeta title={product.name} />
           <div className="row f-flex justify-content-around">
             <div className="col-12 col-lg-5 img-fluid" id="product_image">
               <Carousel pause="hover">
